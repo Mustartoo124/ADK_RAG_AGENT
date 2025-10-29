@@ -23,10 +23,8 @@ answer_agent = Agent(
     If the answer is not in the provided context, use Wikipedia tool to find the answer.
     The answer should be well-structured and easy to understand in a json format with the following structure:
     (
-        "answer": "Your detailed answer here"
+        "answer": "Your detailed answer in vietnamese here"
     )
-    
-    Use the 'append_to_state' tool to store to the 'answer' state key.
     """, 
     before_model_callback=log_query_to_model,
     after_model_callback=log_model_response,

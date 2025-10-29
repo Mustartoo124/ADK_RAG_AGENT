@@ -20,9 +20,8 @@ summarize_lesson_agent = Agent(
     The summary should capture the key points and essential information from the lesson.
     The summary should be well-structured and easy to understand in a json format with the following structure:
     (
-        "summary": "Your concise summary here"
+        "summary": "Your concise summary in vietnamese here"
     )
-    Use the 'append_to_state' tool to store to the 'summary' state key.
     """, 
     before_model_callback=log_query_to_model,
     after_model_callback=log_model_response,

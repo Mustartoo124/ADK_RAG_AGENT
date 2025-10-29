@@ -9,7 +9,6 @@ from ..quiz_generator_agent import quiz_generator_agent
 from ..summarize_lesson_agent import summarize_lesson_agent  
 
 from google.adk import Agent
-from google.adk.agents import ParallelAgent
 
 from ...config import MODEL
 
@@ -20,7 +19,8 @@ knowledge_router_agent = Agent(
     description="Routing task to the right agent based on user intent", 
     instruction="""
     You are a knowledge router assistant that routes to an appropriate agent based on user {intent?} list and {query?}.
-    Based on the {query?}, you should retrieve the appropriate information from corpora using the 'rag_query' tool.
+    Based on the {query?}, you should retrieve the appropriate information from corpora using the 'rag_query' tool, call 
+    'rag_query' tool with the following parameters:
     `rag_query`: Query a corpus to answer questions
        - Parameters:
          - corpus_name: The name of the corpus to query (required, but can be empty to use current corpus)

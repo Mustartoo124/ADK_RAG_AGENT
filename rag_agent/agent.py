@@ -16,10 +16,8 @@ from .config import MODEL
 sequential_agent = SequentialAgent(
             name="sequential_agent",
             sub_agents=[
-                context_adapter_agent, 
                 user_context_agent, 
                 knowledge_router_agent, 
-                output_adapter_agent,
             ],
         )
 
@@ -34,8 +32,10 @@ root_agent = Agent(
        - First, tell the user about what you can do: 
          + You can answer the questions about the learning materials, summarize the learning materials, generate quizzes.
          + You can also work with corpora, such as listing corpora (using 'list_corpora'), creating a corpus (using 'create_corpus'), adding data to a corpus (using 'add_data'), deleting a corpus (using 'delete_corpus'), deleting a document from a corpus (using 'delete_document'), and getting information about a corpus (using 'get_corpus_info').
-         
-    You have six specialized tools at your disposal:
+    
+    When the user send a query, use 'append_to_state' tool to store the user query in the 'query' state key.
+     
+    You have six specialized tools at your disposal, if user want to work with corpora, you should use these tools:
     1. `list_corpora`: List all available corpora
        - When this tool is called, it returns the full resource names that should be used with other tools
     
@@ -62,12 +62,9 @@ root_agent = Agent(
        - Parameters:
          - corpus_name: The name of the corpus to delete
          - confirm: Boolean flag that must be set to True to confirm deletion
-         
-    You will first translate user input to English if the input is in Vietnamese using 'context_adapter_agent'.
-    
-    Then, you will route the translated query to the appropriate process agent or tools based on the user intent.
-    Finally, you will collect the responses from the process agents and format, translate them to Vietnamese using 'output_adapter_agent' for the user.
-    
+
+    If the user has questions about the learning materials, wants to summarize the learning materials, or generate quizzes,
+    you will route the query to the 'sequential_agent' process to handle the request.
     Remember in the whole process, you should always act like a friendly and patient tutor who wants to help students understand the knowledge.
     """, 
     before_model_callback=log_query_to_model,

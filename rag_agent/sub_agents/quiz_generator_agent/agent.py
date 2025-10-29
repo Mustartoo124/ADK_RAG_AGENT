@@ -21,7 +21,8 @@ quiz_generator_agent = Agent(
     2. Each question should have 4 options, labeled A, B, C, and D.
     3. Indicate the correct answer for each question.
     4. The questions should cover different aspects of the provided context to ensure a comprehensive assessment.
-    5. Format the output as a JSON array of objects, where each object represents a quiz question with the following structure:
+    5. Your output should be in Vietnamese.
+    6. Format the output as a JSON array of objects, where each object represents a quiz question with the following structure:
     (
         "quizzes":
         (
@@ -47,7 +48,6 @@ quiz_generator_agent = Agent(
         ), 
         
     )
-    Use the 'append_to_state' tool to store to the 'quiz' state key. 
     """, 
     before_model_callback=log_query_to_model,
     after_model_callback=log_model_response,

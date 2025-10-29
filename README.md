@@ -73,7 +73,7 @@ cd ADK_RAG_AGENT
 python -m venv .venv
 
 # Activate the environment
-.venv\Scripts\activate.bat #Window
+.venv\Scripts\activate #Window
 
 source .venv/bin/activate  #macOS/Linux
 
